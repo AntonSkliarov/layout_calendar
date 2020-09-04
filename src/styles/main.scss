@@ -3,6 +3,51 @@ html {
   font-size: 30px;
 }
 
+/* -------------------- Calendar  -----------------*/
+.calendar {
+  display: flex;
+  flex-wrap: wrap;
+
+  width: 706px;
+
+  margin: 0 auto;
+  margin-top: 175px;
+
+  > div {
+    position: relative;
+
+    height: 100px;
+    width: 100px;
+    margin-right: 1px;
+    margin-bottom: 1px;
+
+    line-height: 100px;
+    text-align: center;
+
+    background-color: #eee;
+
+    border: 1px solid black;
+
+    transition: transform 0.5s;
+
+    &:hover {
+      cursor: pointer;
+
+      background-color: pink;
+
+      transform: translateY(-20px);
+    }
+  }
+}
+
+/* -------------------- Loop for numbers creating  -----------------*/
+
+@for $i from 1 through 31 {
+  .calendar div:nth-child(#{$i})::after {
+    content: "#{$i}";
+  }
+}
+
 /* -------------------- Sundays margin correction -----------------*/
 .calendar-mon div:nth-child(7n+7) {
   margin-right: 0;
@@ -77,49 +122,4 @@ html {
 
 .calendar-sun div:nth-child(1) {
   margin-left: 606px;
-}
-
-/* -------------------- Calendar  -----------------*/
-.calendar {
-  display: flex;
-  flex-wrap: wrap;
-
-  width: 706px;
-
-  margin: 0 auto;
-  margin-top: 175px;
-
-  div:nth-child(-n+31) {
-    position: relative;
-
-    height: 100px;
-    width: 100px;
-    margin-right: 1px;
-    margin-bottom: 1px;
-
-    line-height: 100px;
-    text-align: center;
-
-    background-color: #eee;
-
-    border: 1px solid black;
-
-    transition: transform 0.5s;
-
-    &:hover {
-      cursor: pointer;
-
-      background-color: pink;
-
-      transform: translateY(-20px);
-    }
-  }
-}
-
-/* -------------------- Loop for numbers creating  -----------------*/
-
-@for $i from 1 through 31 {
-  .calendar div:nth-child(#{$i})::after {
-    content: "#{$i}";
-  }
 }
