@@ -1,0 +1,64 @@
+/* -------------------- Calendar  -----------------*/
+.calendar {
+  display: flex;
+  flex-wrap: wrap;
+
+  width: 707px;
+
+  margin: 175px auto;
+
+  > div {
+    position: relative;
+
+    height: 100px;
+    width: 100px;
+    margin-right: 1px;
+    margin-bottom: 1px;
+
+    line-height: 100px;
+    text-align: center;
+
+    background-color: #eee;
+
+    border: 1px solid;
+
+    transition: transform 0.5s;
+
+    @for $i from 1 through 31 {
+      &:nth-child(#{$i})::after {
+        content: "#{$i}";
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      background-color: pink;
+
+      transform: translateY(-20px);
+    }
+  }
+}
+
+/* -------------------- Days in month loop-----------------*/
+@for $i from 28 through 31 {
+  .calendar-#{$i} div:nth-child(n+#{$i+1}) {
+    display: none;
+  }
+}
+
+/* ------------- First day of the month to day of week Loop -----------*/
+$day-and-shift:
+  mon 0,
+  tue 101px,
+  wed 202px,
+  thu 303px,
+  fri 404px,
+  sat 505px,
+  sun 606px;
+
+@each $day, $shift in $day-and-shift {
+  .calendar-#{$day} div:first-child {
+    margin-left: #{$shift};
+  }
+}
